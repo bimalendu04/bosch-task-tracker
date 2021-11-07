@@ -158,7 +158,7 @@ const Todo = (props: ITodoProps) => {
                 </Col>
             </Row>
         </Layout>
-        <Modal title="Basic Modal" visible={Boolean(selectedToDelete.id)} onOk={onDeleteConfirmed} onCancel={() => reset()}>
+        <Modal title="Delete Task" visible={Boolean(selectedToDelete.id)} onOk={onDeleteConfirmed} onCancel={() => reset()}>
             It will delete the task {selectedToDelete.name}. Continue ahead?
         </Modal>
         <Modal
