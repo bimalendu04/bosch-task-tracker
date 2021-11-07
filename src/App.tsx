@@ -5,7 +5,8 @@ import {
   Switch,
   Route,
   Redirect,
-  Link
+  Link,
+  useLocation
 } from "react-router-dom";
 import { Avatar, Layout, Menu, Image, Dropdown } from 'antd';
 
@@ -25,6 +26,7 @@ import { openNotification } from './utilities/Notification';
 const { Header, Sider, Content } = Layout;
 
 function App() {
+  let location = useLocation();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(Boolean(sessionStorage.getItem('isLoggedIn')));
   const [authUserDetails, setAuthUserDetails] = useState<IUser | null>(JSON.parse(sessionStorage.getItem('userDetails') || '{}'));
 
@@ -140,10 +142,10 @@ function App() {
         updateSearchText
       }}>
         <Layout>
-          <Router>
+          
             <Sider>
               <Menu
-                defaultSelectedKeys={[window.location.pathname.replaceAll('/', '')]}
+                selectedKeys={[location.pathname.replaceAll('/', '')]}
                 mode="inline"
                 theme="dark"
                 inlineCollapsed={false}
@@ -183,7 +185,6 @@ function App() {
                 <Redirect to="/" />
               </Switch>
             </Content>
-          </Router>
         </Layout>
       </AppProvider>
     </Layout>
